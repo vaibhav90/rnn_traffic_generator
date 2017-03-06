@@ -12,6 +12,7 @@ from sklearn.metrics import mean_squared_error
 from keras.models import load_model
 import itertools
 import gmplot
+from keras.models import load_model
 
 f = open('xyz.csv', 'rU')
 gps_logs = csv.reader(f)
@@ -93,6 +94,9 @@ model.add(Dense(1))
 model.compile(loss='mean_squared_error', optimizer='adam')
 model.fit(trainX, trainY, nb_epoch=1, batch_size=1, verbose=2)
 
+
+
+model.save('tf_gen01.h5')  # creates a HDF5 file 'my_model.h
 
 
 
