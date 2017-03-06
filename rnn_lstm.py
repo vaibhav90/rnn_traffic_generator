@@ -14,6 +14,7 @@ import itertools
 import gmplot
 from keras.models import load_model
 
+
 f = open('xyz.csv', 'rU')
 gps_logs = csv.reader(f)
 
@@ -95,10 +96,15 @@ model.compile(loss='mean_squared_error', optimizer='adam')
 model.fit(trainX, trainY, nb_epoch=1, batch_size=1, verbose=2)
 
 
+#model.save('traffic_gen01.h5')  # creates a HDF5 file 'my_model.h5'
 
-model.save('tf_gen01.h5')  # creates a HDF5 file 'my_model.h
-
-
+# serialize model to JSON
+model_json = model.to_json()
+with open("traffic_gen01.json", "w") as json_file:
+    json_file.write(model_json)
+# serialize weights to HDF5
+model.save_weights("traffic_gen.h5")
+print("Saved model to disk")
 
 
 '''
